@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GarageApp
 {
-    internal class Vehicle
+    internal class Vehicle : IVehicle
     {
         public string RegNumber { get; set; }
         public string Color { get; set; }
