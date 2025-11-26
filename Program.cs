@@ -5,6 +5,8 @@ namespace GarageApp
     {
         static void Main(string[] args)
         {
+            var handler = new GarageHandler();
+
             Console.WriteLine("Welcome to the Garage Application!");
             while (true)
             {

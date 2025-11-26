@@ -8,5 +8,13 @@ namespace GarageApp
 {
     internal class Boat : Vehicle
     {
+        public Boat(string regNumber, string color, int wheels, double length) : base(regNumber, color, wheels)
+        {
+            Length = length;
+        }
+
+        public double Length { get; set; }
+
+
     }
 }

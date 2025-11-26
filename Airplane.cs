@@ -8,5 +8,12 @@ namespace GarageApp
 {
     internal class Airplane : Vehicle
     {
+        public Airplane(string regNumber, string color, int wheels, int engines) : base(regNumber, color, wheels)
+        {
+            NumberOfEngines = engines;
+        }
+
+        public int NumberOfEngines { get; set; }
+
     }
 }
