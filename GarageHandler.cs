@@ -1,6 +1,6 @@
 ﻿using System.Reflection.Metadata;
 
-namespace GarageApp
+namespace GarageApp.Vehicles
 {
     internal class GarageHandler : IHandler
     {

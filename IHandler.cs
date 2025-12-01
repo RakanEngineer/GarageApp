@@ -1,4 +1,6 @@
-﻿namespace GarageApp
+﻿using GarageApp.Vehicles;
+
+namespace GarageApp
 {
     internal interface IHandler
     {

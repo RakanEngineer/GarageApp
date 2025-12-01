@@ -1,8 +1,8 @@
 ﻿
 using GarageApp;
-using GarageApp.Abstractions;
+using GarageApp.UI;
 
-namespace GarageApp
+namespace GarageApp.Vehicles
 {
     internal class Program
     {

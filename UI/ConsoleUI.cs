@@ -1,4 +1,4 @@
-﻿namespace GarageApp.Abstractions
+﻿namespace GarageApp.UI
 {
     public class ConsoleUI: IUI
     {

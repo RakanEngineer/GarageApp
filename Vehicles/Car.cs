@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GarageApp
+namespace GarageApp.Vehicles
 {
     internal class Car : Vehicle
     {

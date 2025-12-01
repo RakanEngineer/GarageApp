@@ -1,7 +1,5 @@
-﻿using GarageApp;
-using GarageApp.Abstractions;
-using System.Diagnostics.Metrics;
-using System.Reflection.Metadata;
+﻿using GarageApp.UI;
+using GarageApp.Vehicles;
 
 namespace GarageApp
 {
@@ -10,6 +8,7 @@ namespace GarageApp
         //private ConsoleUI ui;
         private GarageHandler _garageHandler = new GarageHandler();
         private static IUI _ui = new ConsoleUI();
+        private Garage<IVehicle> _garage;
 
         //public Main(ConsoleUI ui, GarageHandler handler)
         //{
@@ -26,6 +25,7 @@ namespace GarageApp
         public void Run()
         {
             //SeedData();
+            bool exit = false;
             do
             {
                 Console.WriteLine("Welcome to the Garage Application!");
@@ -55,15 +55,15 @@ namespace GarageApp
                         break;
 
                     case "6":
-                        //RetrieveVehicle();
+                        RetrieveVehicle();
                         break;
 
                     case "7":
-                        //SearchMenu();
+                        SearchMenu();
                         break;
 
                     case "8":
-                        //exit = true;
+                        exit = true;
                         break;
 
                     default:
@@ -71,31 +71,77 @@ namespace GarageApp
                         Console.ReadKey();
                         break;
                 }
-            } while (true);
+            } while (!exit);
+
+        }
+
+        private void SearchMenu()
+        {
+            Console.Write("Color: ");
+            var color = Console.ReadLine().Trim();
+            Console.Write("Number of wheels: ");
+            var wheelsInput = Console.ReadLine().Trim();
+            int? wheels = int.TryParse(wheelsInput, out int w) ? w : null;
+            Console.Write("Type of vehicle: ");
+            var type = Console.ReadLine().Trim();
+            var results = _garageHandler.SearchByCriteria(color, wheels, type).ToList();
+            if (!results.Any())
+            {
+                Console.WriteLine("No vehicles found matching the criteria.");
+            }
+            else
+            {
+                Console.WriteLine("Vehicles found:");
+                foreach (var vehicle in results)
+                {
+                    Console.WriteLine(vehicle.ToString());
+                }
+            }
+            Pause();
+
+        }
+
+        private void RetrieveVehicle()
+        {
+            Console.Write("Enter the registration number of the vehicle to retrieve: ");
+            var regNum = Console.ReadLine().Trim();
+            var (vehicle, message) = _garageHandler.RetrieveVehicle(regNum);
+            Console.WriteLine(message);
+            if (vehicle != null)
+            {
+                Console.WriteLine("Retrieved vehicle details:");
+                Console.WriteLine(vehicle.ToString());
+            }
+            Pause();
 
         }
 
         private void ParkVehicle()
         {
-            Console.WriteLine("What type of vehicle? (Car, Motorcycle, Bus, Boat, Airplane)");
-            var type = Console.ReadLine()?.Trim();
-            try
+            if (_garage == null) Console.WriteLine("Create garage first.");
+            else
             {
-                IVehicle vehicle = CreateVehicleFromInput(type);
-                if (vehicle == null)
+                Console.WriteLine("What type of vehicle? (Car, Motorcycle, Bus, Boat, Airplane)");
+                var type = Console.ReadLine()?.Trim();
+                try
                 {
-                    Console.WriteLine("Could not create vehicle - invalid type or input.");
-                    Pause();
-                    return;
-                }
+                    IVehicle vehicle = CreateVehicleFromInput(type);
+                    if (vehicle == null)
+                    {
+                        Console.WriteLine("Could not create vehicle - invalid type or input.");
+                        Pause();
+                        return;
+                    }
 
-                var (ok, message) = _garageHandler.ParkVehicle(vehicle);
-                Console.WriteLine(message);
+                    var (ok, message) = _garageHandler.ParkVehicle(vehicle);
+                    Console.WriteLine(message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Fel: " + ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Fel: " + ex.Message);
-            }
+
             Pause();
         }
 
@@ -156,7 +202,7 @@ namespace GarageApp
             var all = _garageHandler.ListAll().ToList();
             if (!all.Any())
             {
-                Console.WriteLine("Inga fordon i garaget.");
+                Console.WriteLine("No vehicles in the garage.");
             }
             else
             {

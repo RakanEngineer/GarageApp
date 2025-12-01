@@ -1,5 +1,4 @@
-﻿
-namespace GarageApp.Abstractions
+﻿namespace GarageApp.UI
 {
     public interface IUI
     {
