@@ -117,10 +117,7 @@ namespace GarageApp
         }
 
         private void ParkVehicle()
-        {
-            if (_garage == null) Console.WriteLine("Create garage first.");
-            else
-            {
+        {            
                 Console.WriteLine("What type of vehicle? (Car, Motorcycle, Bus, Boat, Airplane)");
                 var type = Console.ReadLine()?.Trim();
                 try
@@ -139,8 +136,7 @@ namespace GarageApp
                 catch (Exception ex)
                 {
                     Console.WriteLine("Fel: " + ex.Message);
-                }
-            }
+                }            
 
             Pause();
         }

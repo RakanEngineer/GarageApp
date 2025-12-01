@@ -15,6 +15,6 @@ namespace GarageApp.Vehicles
 
         public int NumberOfEngines { get; set; }
 
-        public override string VehicleType => throw new NotImplementedException();
+        public override string VehicleType => "Airplane";
     }
 }
