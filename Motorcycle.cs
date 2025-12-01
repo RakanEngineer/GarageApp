@@ -6,12 +6,21 @@ using System.Threading.Tasks;
 
 namespace GarageApp
 {
-    internal class Motorcycle : Vehicle
+    public class Motorcycle : Vehicle
     {
-        public Motorcycle(string regNumber, string color, int wheels, int EngineCapacity) : base(regNumber, color, wheels)
+        public double CylinderVolume { get; set; } // t.ex. 600.0
+
+        public Motorcycle(string regNr, string color, int wheels, double cylinderVolume)
+            : base(regNr, color, wheels)
         {
-            this.EngineCapacity = EngineCapacity;
+            CylinderVolume = cylinderVolume;
         }
-        public int EngineCapacity { get; set; }
+
+        public override string VehicleType => "Motorcycle";
+
+        public override string ToString()
+        {
+            return base.ToString() + $" | Cylinder: {CylinderVolume}cc";
+        }
     }
 }

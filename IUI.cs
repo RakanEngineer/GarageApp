@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GarageApp
+﻿
+namespace GarageApp.Abstractions
 {
-    internal interface IUI
+    public interface IUI
     {
+        string GetInput();
+        void DisplayMessage(string message);
+
+
     }
 }

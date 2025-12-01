@@ -19,6 +19,11 @@ namespace GarageApp
         public int NumberOfEngines { get; set; }
         public string FuelType { get; set; }
         public int NumberOfSeats { get; set; }
+        public override string VehicleType => "Car";
 
+        public override string ToString()
+        {
+            return base.ToString() + $" | Seats: {NumberOfSeats} | Fuel: {FuelType}";
+        }
     }
 }

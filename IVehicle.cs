@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace GarageApp
 {
-    internal interface IVehicle
+    public interface IVehicle
     {
-        string RegNumber { get; }
-        string Color { get; }
-        int NumberOfWheels { get; }       
+        string RegistrationNumber { get; }
+        string Color { get; set; }
+        int NumberOfWheels { get; set; }
+        string VehicleType { get; }
     }
 }

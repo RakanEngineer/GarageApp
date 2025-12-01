@@ -15,6 +15,6 @@ namespace GarageApp
 
         public double Length { get; set; }
 
-
+        public override string VehicleType => throw new NotImplementedException();
     }
 }
