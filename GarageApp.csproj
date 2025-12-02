@@ -8,7 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="GarageApp.Test\**" />
+    <EmbeddedResource Remove="GarageApp.Test\**" />
+    <None Remove="GarageApp.Test\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.assert" Version="2.9.2" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.9.2" />
   </ItemGroup>
 
 </Project>
